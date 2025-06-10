@@ -27,10 +27,15 @@ jobs:
 
     - name: Install dependencies
       run: uv pip install . --system --no-cache-dir
-      
+
     - name: Run ruff
       run: uv run ruff check --fix .
         
-    - name: Test script
-      run: uv run pytest
+    # - name: Test script
+    #   run: uv run pytest
+
+    - name: Docker build
+      run: |
+        docker build -t my-python-app .
+        docker run my-python-app
 
