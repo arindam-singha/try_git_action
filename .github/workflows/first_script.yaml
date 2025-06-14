@@ -34,6 +34,9 @@ jobs:
     - name: Test script
       run: uv run pytest
 
+    - name: Build Docker image
+      run: docker build -t my-docker-app .
+
     # - name: Docker build
     #   run: |
     #     docker build -t my-python-app .

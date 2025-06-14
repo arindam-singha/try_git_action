@@ -1,0 +1,10 @@
+# .github/workflows/main-workflow.yml
+name: Main Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  call-reusable:
+    uses: .github/workflows/main-workflow.yml
