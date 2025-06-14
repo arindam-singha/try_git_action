@@ -31,8 +31,8 @@ jobs:
     - name: Run ruff
       run: uv run ruff check --fix .
         
-    # - name: Test script
-    #   run: uv run pytest
+    - name: Test script
+      run: uv run pytest
 
     # - name: Docker build
     #   run: |

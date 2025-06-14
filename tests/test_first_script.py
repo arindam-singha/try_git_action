@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 from first_project.first_script import add, subtract, multiply
 
 # Test cases for the first_script module
