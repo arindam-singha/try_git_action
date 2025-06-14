@@ -1,44 +1,33 @@
-name: My First GitHub Action # This GitHub Action runs a simple Python script and prints the output. 
+# .github/workflows/reusable-checks.yml
+name: Reusable Python CI
 
 on:
-  issues:
-    types: [opened, edited, reopened]
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_call:  # Make it reusable
 
 jobs:
   tests__build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Install the latest version of uv
-      uses: astral-sh/setup-uv@v6
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
 
-    - name: Install dependencies
-      run: uv pip install . --system --no-cache-dir
+      - name: Install dependencies
+        run: uv pip install . --system --no-cache-dir
 
-    - name: Run ruff
-      run: uv run ruff check --fix .
-        
-    - name: Test script
-      run: uv run pytest
+      - name: Run ruff
+        run: uv run ruff check --fix .
 
-    - name: Build Docker image
-      run: docker build -t my-docker-app .
+      - name: Test script
+        run: uv run pytest
 
-    # - name: Docker build
-    #   run: |
-    #     docker build -t my-python-app .
-    #     docker run my-python-app
-
+      - name: Build Docker image
+        run: docker build -t my-docker-app .
